@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Header = () => {
+  const navigate = useNavigate()
     const {user , logOutUser} = useContext(AuthContext)
     const menuItem = <>
             
@@ -29,6 +30,7 @@ const Header = () => {
         logOutUser()
         .then(()=>{
             toast.success('successfully log out')
+            navigate('/')
         })
         .catch(e =>{
             toast.error(e.message)
@@ -46,16 +48,18 @@ const Header = () => {
           <li>{menuItem}</li>
         </ul>
       </div>
-      <a href='/' className="btn btn-ghost normal-case text-xl">daisyUI</a>
+     <Link className='text-xl font-bold' to='/'>Social App</Link>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
        <li>{menuItem}</li>
       </ul>
     </div>
-    <div className="navbar-end">
+   {
+    user && user.uid &&  <div className="navbar-end">
     <button onClick={handleSignOut} className='btn btn-outline'>SignOut</button>
     </div>
+   }
   </div>
 
     );

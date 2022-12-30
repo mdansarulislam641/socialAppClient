@@ -7,7 +7,7 @@ const MostViewPost = () => {
     const {data=[], isLoading} = useQuery({
         queryKey:[],
         queryFn:async()=>{
-            const res = await fetch('http://localhost:5000/postInformation');
+            const res = await fetch('https://social-media-app-server-indol.vercel.app/postInformation');
             const data = await res.json();
             return data
         }

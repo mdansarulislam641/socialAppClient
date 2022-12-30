@@ -34,7 +34,7 @@ const AddPost = () => {
                     email:user.email
                 }
                 // post information store in database
-                fetch('http://localhost:5000/postInformation',{
+                fetch('https://social-media-app-server-indol.vercel.app/postInformation',{
                     method:'POST',
                     headers:{
                         'content-type':'application/json'

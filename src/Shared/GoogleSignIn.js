@@ -16,8 +16,8 @@ const GoogleSignIn = () => {
                 email : result?.user?.email,
                 name: result?.user?.displayName,
             }
-            fetch('https://localhost:5000/users',{
-                method:"POST",
+            fetch(`https://localhost:5000/users/${result?.user?.email}`,{
+                method:"PUT",
                 headers:{
                     'content-type':'application/json'
                 },

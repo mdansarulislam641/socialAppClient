@@ -33,7 +33,7 @@ const ModalEdit = ({userData, submit , setSubmit , refetch}) => {
                 }
 
                 // send data server to database
-                fetch(`http://localhost:5000/users/${user?.email}`,{
+                fetch(`https://social-media-app-server-indol.vercel.app/users/${user?.email}`,{
                     method:"PUT",
                     headers:{
                         'content-type':'application/json'
@@ -69,7 +69,7 @@ const ModalEdit = ({userData, submit , setSubmit , refetch}) => {
                 <input className='input  input-bordered w-full text-xl' type="text" name='collage' defaultValue={userData && userData.collage} placeholder='your collage' />
                 
                 <div className="modal-action">
-                <button htmlFor='Edit-modal' className='btn btn-primary'>{setSubmit ? 'loading...': 'Update'}</button>
+                <button htmlFor='Edit-modal' className='btn btn-primary'>{setSubmit ? 'Update': 'loading'}</button>
        <label htmlFor="Edit-modal" className="btn">Cancel</label>
      </div>
             </form> 

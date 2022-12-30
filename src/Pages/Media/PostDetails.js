@@ -10,18 +10,30 @@ const PostDetails = () => {
     const {data={} , isLoading} = useQuery({
         queryKey:['postInformation' ],
         queryFn:async()=>{
-            const res = await fetch(`http://localhost:5000/postInformation/${id}`);
+            const res = await fetch(`https://social-media-app-server-indol.vercel.app/postInformation/${id}`);
             const data = await res.json();
             return data ;
         }
     })
+
     const {_id, description, image, react ,  name} = data ;
+      // get comment per post
+      const {data:comments=[]} = useQuery({
+        queryKey:['comment', id],
+        queryFn:async()=>{
+          const res = await fetch(`https://social-media-app-server-indol.vercel.app/comment/${id}`)
+          const data = await res.json();
+         return data ;
+        }
+      })
+
+      console.log(comments)
     if(isLoading){
         return <Loading></Loading>
     }
     return (
-       <section>
-         <div className="max-w-screen-xl mx-auto w-full flex bg-base-100 shadow-xl">
+       <section className='pt-20 h-[100vh] bg-base-300'>
+         <div className="  max-w-screen-xl mx-auto w-full flex bg-base-100 shadow-xl">
        <div>
        <figure><img src={image} className='h-64 object-fill w-full' alt="images" /></figure>
        </div>
@@ -29,8 +41,18 @@ const PostDetails = () => {
         <div className="card-body">
             <h2 className='text-xl font-extrabold font-mono'>{'Author :'+ name}</h2>
           <p className='text-xl'>{description}</p>
-          <h3 className='text-xl font-extrabold font-mono'>React: {react ? react : 0}</h3>
-          <div className="card-actions justify-end">
+          <div className="">
+          <h2 className='text-xl font-semibold'>Comments:{comments.length}</h2>
+            {
+              comments?.map(cmt=> <div>
+                
+                 <ul>
+                  <li className='text-xl'>{cmt.comment}</li>
+                </ul>
+               </div>
+                
+              )
+            }
           </div>
     
         </div>

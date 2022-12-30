@@ -13,7 +13,7 @@ const About = () => {
     const {data={},isLoading , refetch} = useQuery({
         queryKey:['users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/${user?.email}`)
+            const res = await fetch(`https://social-media-app-server-indol.vercel.app/users/${user?.email}`)
             const data = await res.json()
             return data ;
         }
@@ -22,15 +22,15 @@ const About = () => {
     const {data:myPost=[]} = useQuery({
         queryKey:['postInformation',user?.email],
         queryFn:async()=>{
-            const res =await fetch(`http://localhost:5000/usersPost/${user?.email}`);
+            const res =await fetch(`https://social-media-app-server-indol.vercel.app/usersPost/${user?.email}`);
             const data = await res.json()
             return data;
         }
     })
 console.log(myPost)
-if(isLoading){
-    return <Loading></Loading>
-}
+// if(isLoading){
+//     return <Loading></Loading>
+// }
  
     return (
         <section>
@@ -50,7 +50,7 @@ if(isLoading){
               </div>
                <div>
                <h2 className='text-2xl font-bold font-mono'>{data?.name}</h2>
-               <h2 className='text-xl font-bold font-mono'><span>0 Flowers</span><span> | </span><span>0 Flowers</span></h2>
+               <h2 className='text-xl font-bold font-mono'><span>0 Flowing</span><span> | </span><span>0 Flowers</span></h2>
                <strong className='flex items-center gap-1'><MdSchool className='text-xl text-blue-700'></MdSchool> {data.collage }</strong>
                <address className='flex items-center gap-1'><FaHome className='text-blue-700 text-xl'></FaHome>{data.address }  </address>
 

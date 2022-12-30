@@ -22,7 +22,7 @@ const Register = () => {
             email:data.email,
           }
           // set user information database
-          fetch(`http://localhost:5000/users/${data.email}`,{
+          fetch(`https://social-media-app-server-indol.vercel.app/users/${data.email}`,{
             method:'PUT',
             headers:{
               'content-type':'application/json'
