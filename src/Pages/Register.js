@@ -21,10 +21,9 @@ const Register = () => {
             name:data.name,
             email:data.email,
           }
-          updateUserProfile(data.name)
-          .then(()=>{
-          fetch(`http://localhost:5000/users`,{
-            method:'POST',
+          // set user information database
+          fetch(`http://localhost:5000/users/${data.email}`,{
+            method:'PUT',
             headers:{
               'content-type':'application/json'
             },
@@ -35,14 +34,7 @@ const Register = () => {
             console.log(data)
             toast.success('successfully register')
           })
-          })
-          .catch(e=>{
-            console.log(e.message)
-            toast.error(e.message)
-          })
 
-         
-        
         })
         .catch(e =>{
           console.log(e.message)

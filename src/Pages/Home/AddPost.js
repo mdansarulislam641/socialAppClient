@@ -30,7 +30,8 @@ const AddPost = () => {
                     description: postInfo ,
                     image : imageUrl,
                     name:user && user?.displayName ,
-                    publishedDate: today
+                    publishedDate: today,
+                    email:user.email
                 }
                 // post information store in database
                 fetch('http://localhost:5000/postInformation',{
@@ -53,7 +54,7 @@ const AddPost = () => {
     }
     return (
         <main >
-            <section className='bg-gray-300 py-10 rounded-2xl  '>
+            <section className=' py-10 rounded-2xl  '>
                 <div className='text-center my-10 max-w-screen-xl mx-auto'>
                     <form onSubmit={handlePostSubmit}>
                        <div>

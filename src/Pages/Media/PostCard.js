@@ -19,11 +19,11 @@ const PostCard = ({postInfo}) => {
     }
 
     return (
-        <div className="card w-full bg-base-100 shadow-xl">
+        <div className="card my-10 w-full bg-base-100 shadow-xl">
         <figure><img src={image} className='h-64 object-fill w-full' alt="images" /></figure>
 
         <div className="card-body">
-            <h2 className='text-xl font-extrabold font-mono'>{name.length && 'Author :'+ name}</h2>
+            <h2 className='text-xl font-extrabold font-mono'>{name && 'Author :'+ name}</h2>
             <h2 className='font-bold my-0' >Published Date : {publishedDate}</h2>
           <p className='text-xl'>{description.length > 10 && description.slice(0,100)}</p>
           <h3 className='text-xl font-extrabold font-mono'>React: {react ? react : 0}</h3>
